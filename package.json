@@ -1,6 +1,6 @@
 {
   "name": "@peter_xiter/dbh-js-tools",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "js tools",
   "main": "index.js",
   "scripts": {
