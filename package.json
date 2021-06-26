@@ -23,7 +23,7 @@
     "lib": "lib"
   },
   "dependencies": {
-    "js-base64": "^3.6.1",
+    "js-base64": "3.6.*",
     "lockr": "0.8.*"
   }
 }
