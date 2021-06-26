@@ -2,6 +2,7 @@
 
 import dbhCache from "./cache";
 import {Base64, fromBase64, toBase64} from 'js-base64';
+import {v4 as uuidv4} from 'uuid';
 
 // 移除 removeSchema
 
@@ -183,18 +184,17 @@ const setSessionId = (sessionId, expire) => {
     expireSec = expireSec > 0 ? expireSec : 0;
 
     dbhCache.setCookie('BY_SESSION_ID', sessionId, expireSec)
-}
+};
 // 获取会话id
 const getSessionId = () => {
-    let sessionId = dbhCache.getCookie('BY_SESSION_ID')
+    let sessionId = dbhCache.getCookie('BY_SESSION_ID');
     if (typeof (sessionId) === 'undefined' || sessionId === '') {
-        let UUID = require('uuid')
-        sessionId = ('DBH' + UUID.v4()).replace(/-/g, '')
+        sessionId = ('DBH' + uuidv4()).replace(/-/g, '');
         console.debug('generate session id', sessionId)
     }
-    setSessionId(sessionId)
+    setSessionId(sessionId);
     return sessionId
-}
+};
 
 const getApiUrl = (api_url) => {
     return getCurrentProtocol() + api_url.replace('http:', '').replace('https:', '');

@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "js-base64": "3.6.*",
-    "lockr": "0.8.*"
+    "lockr": "0.8.*",
+    "uuid": "^8.3.2"
   }
 }
