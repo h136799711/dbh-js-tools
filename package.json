@@ -1,0 +1,28 @@
+{
+  "name": "@peter_xiter/dbh-js-tools",
+  "version": "0.0.1",
+  "description": "js tools",
+  "main": "index.js",
+  "scripts": {
+    "compile": "npx --out-dir compiled",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/h136799711/dbh-js-tools.git"
+  },
+  "keywords": [],
+  "author": "peter_xiter",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/h136799711/dbh-js-tools/issues"
+  },
+  "homepage": "https://github.com/h136799711/dbh-js-tools#readme",
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "dependencies": {
+    "lockr": "0.8.*"
+  }
+}
