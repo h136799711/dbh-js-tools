@@ -194,21 +194,20 @@ const getSessionId = () => {
     return sessionId
 }
 
-const getApiUrl = () => {
-    return getCurrentProtocol() + (`${api_url}`).replace('http:', '').replace('https:', '');
+const getApiUrl = (api_url) => {
+    return getCurrentProtocol() + api_url.replace('http:', '').replace('https:', '');
 }
 
-const getAvatarUploadUrl = () => {
-    return getCurrentProtocol() + (`${picture_url}`).replace('http:', '').replace('https:', '')
+const getAvatarUploadUrl = (picture_url) => {
+    return getCurrentProtocol() + picture_url.replace('http:', '').replace('https:', '')
 }
 
 const getImgUrl = (imgUrl) => {
-    if (!imgUrl) return ''
-
-    if (!_.startsWith(imgUrl, 'http')) {
-        imgUrl = tools.getApiUrl() + imgUrl
+    if (!imgUrl) return '';
+    if (!imgUrl.startsWith('http')) {
+        imgUrl = getApiUrl() + imgUrl
     }
-    return imgUrl
+    return imgUrl.removeSchema();
 };
 
 const getCurrentProtocol = () => {
