@@ -1,6 +1,8 @@
 /* eslint-disable */
 
 import dbhCache from "./cache";
+import {Base64, fromBase64, toBase64} from 'js-base64';
+
 // 移除 removeSchema
 
 if (!String.prototype.removeSchema) {
@@ -263,8 +265,25 @@ const getTimezone = () => {
 const debug = (title, value) => {
     console.info("%c " + title + " %c " + value + " ", "background:#606060;padding: 1px; border-radius: 3px 0px 0px 3px;color:#ffffff;", "background:#3474ad;padding: 1px; border-radius: 0px 3px 3px 0px;color:#ffffff;");
 };
-
+const setUserSessionData = (userSessionData) => {
+    userSessionData = Base64.encode(JSON.stringify (userSessionData));
+    dbhCache.setBigDataValue ('BY_USER_SESSION_DATA', userSessionData, 3600);
+}
+const getUserSessionData = () => {
+    let sessionData = dbhCache.getBigDataValue ('BY_USER_SESSION_DATA');
+    if (!sessionData || sessionData === '') {
+        return false;
+    }
+    try {
+        sessionData = JSON.parse(Base64.decode(sessionData));
+        return sessionData;
+    } catch (e) {
+        console.debug('getUserSessionData', e);
+        return false;
+    }
+};
 const dbhTool = {
+    getUserSessionData,setUserSessionData,
     debug,
     getImgUrl,
     getBrowseLanguage,
