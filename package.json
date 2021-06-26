@@ -4,7 +4,7 @@
   "description": "js tools",
   "main": "index.js",
   "scripts": {
-    "compile": "npx --out-dir compiled",
+    "compile": "npx babel ./index.js --out-dir compiled",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,5 +26,6 @@
     "js-base64": "3.6.*",
     "lockr": "0.8.*",
     "uuid": "^8.3.2"
-  }
+  },
+  "devDependencies": {}
 }
