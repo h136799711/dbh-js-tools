@@ -47,6 +47,11 @@ const getBigDataValue = (key) => {
     }
     return Lockr.get(key)
 };
+const getBigDataExpiredTime = (key) => {
+    key = dbhMd5.hex_hmac_md5('asasi', key);
+
+    return Lockr.get(key + '_time');
+};
 const setBigDataValue = (key, value, expireSeconds) => {
     key = dbhMd5.hex_hmac_md5('asasi', key);
     Lockr.set(key, value);
@@ -59,11 +64,16 @@ const clearAll = () => {
     clearCookie();
     Lockr.flush();
 };
-
+const clearLocalStorage= () => {
+    Lockr.flush();
+};
 const dbhCache = {
     getCookie,
     setCookie,
     clearAll,
+    clearCookie,
+    clearLocalStorage,
+    getBigDataExpiredTime,
     setBigDataValue,
     getBigDataValue
 };
