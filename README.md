@@ -2,7 +2,7 @@
 
 # 查看示例
 
-
+npm version patch | major | minor
 
 # 使用说明
 ```
