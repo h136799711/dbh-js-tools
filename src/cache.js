@@ -35,8 +35,12 @@ const clearCookie = () => {
             document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
         }
     }
-}
-
+};
+const removeBigDataValue = (key) => {
+    key = dbhMd5.hex_hmac_md5('asasi', key);
+    Lockr.rm(key);
+    Lockr.rm(key + '_time');
+};
 // 缓存设置
 const getBigDataValue = (key) => {
     key = dbhMd5.hex_hmac_md5('asasi', key);
@@ -75,7 +79,8 @@ const dbhCache = {
     clearLocalStorage,
     getBigDataExpiredTime,
     setBigDataValue,
-    getBigDataValue
+    getBigDataValue,
+    removeBigDataValue,
 };
 
 export default dbhCache;
