@@ -4,17 +4,15 @@ import Lockr from 'lockr';
 import dbhMd5 from "./md5";
 
 // 设置cookie , 过期时间 单位秒
-const setCookie = (name, value, expireTime) => {
+const setCookie = (name, value, expireTime, sameSite = 'Lax') => {
     name = dbhMd5.hex_hmac_md5('asasi', name);
     let expires = '';
     if (expireTime) {
         let date = new Date();
-        date.setTime(date.getTime() + (expireTime * 1000))
-        // console.debug(name, expireTime, date.getTime())
-        // expires  = '; expires=' + date.toGMTString()
-        expires  = '; max-age=' + expireTime
+        date.setTime(date.getTime() + (expireTime * 1000));
+        expires  = '; max-age=' + expireTime;
     }
-    document.cookie = name + '=' + value + expires + '; path=/; secure=true;SameSite=Strict;'
+    document.cookie = name + '=' + value + expires + '; path=/; secure=true;SameSite=' + sameSite + ';'
 };
 // 获取cookie
 const getCookie = (name) => {
@@ -23,7 +21,7 @@ const getCookie = (name) => {
     let ca = document.cookie.split(';');
     for (let i = 0; i < ca.length; i++) {
         let c = ca[i];
-        while (c.charAt(0) === ' ') c = c.substring(1, c.length)
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
         if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length)
     }
     return ''
