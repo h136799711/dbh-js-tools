@@ -11,9 +11,10 @@ const setCookie = (name, value, expireTime) => {
         let date = new Date();
         date.setTime(date.getTime() + (expireTime * 1000))
         // console.debug(name, expireTime, date.getTime())
-        expires  = '; expires=' + date.toGMTString()
+        // expires  = '; expires=' + date.toGMTString()
+        expires  = '; max-age=' + expireTime
     }
-    document.cookie = name + '=' + value + expires + '; path=/'
+    document.cookie = name + '=' + value + expires + '; path=/; secure=true;SameSite=Strict;'
 };
 // 获取cookie
 const getCookie = (name) => {
