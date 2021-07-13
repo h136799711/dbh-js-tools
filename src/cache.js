@@ -2,6 +2,7 @@
 
 import Lockr from 'lockr';
 import dbhMd5 from "./md5";
+import dbhTool from "./tool";
 
 // 设置cookie , 过期时间 单位秒
 const setCookie = (name, value, expireTime, sameSite = 'Lax') => {
@@ -12,7 +13,11 @@ const setCookie = (name, value, expireTime, sameSite = 'Lax') => {
         date.setTime(date.getTime() + (expireTime * 1000));
         expires  = '; max-age=' + expireTime;
     }
-    document.cookie = name + '=' + value + expires + '; path=/; secure=true;SameSite=' + sameSite + ';'
+    if (dbhTool.isHttps()) {
+        document.cookie = name + '=' + value + expires + '; path=/; secure=true;SameSite=' + sameSite + ';'
+    } else {
+        document.cookie = name + '=' + value + expires + '; path=/; SameSite=' + sameSite + ';'
+    }
 };
 // 获取cookie
 const getCookie = (name) => {

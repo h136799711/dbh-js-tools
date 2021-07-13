@@ -216,6 +216,10 @@ const getCurrentProtocol = () => {
     return window.location.protocol;
 };
 
+const isHttps = () => {
+    return window.location.protocol.indexOf("https") === 0;
+};
+
 const getDeviceType = () => {
     var Sys = {}
     var ua = navigator.userAgent.toLowerCase()
@@ -283,6 +287,7 @@ const getUserSessionData = () => {
     }
 };
 const dbhTool = {
+    isHttps,
     getUserSessionData,setUserSessionData,
     debug,
     getImgUrl,
