@@ -217,7 +217,7 @@ const getCurrentProtocol = () => {
 };
 
 const isHttps = () => {
-    return window.location.protocol.indexOf("https") === 0;
+    return window && window.location && location.protocol &&window.location.protocol.indexOf("https") === 0;
 };
 
 const getDeviceType = () => {

@@ -9,8 +9,6 @@ const setCookie = (name, value, expireTime, sameSite = 'Lax') => {
     name = dbhMd5.hex_hmac_md5('asasi', name);
     let expires = '';
     if (expireTime) {
-        let date = new Date();
-        date.setTime(date.getTime() + (expireTime * 1000));
         expires  = '; max-age=' + expireTime;
     }
     if (dbhTool.isHttps()) {
