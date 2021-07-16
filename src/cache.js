@@ -11,11 +11,11 @@ const setCookie = (name, value, expireTime, sameSite = 'Lax') => {
     if (expireTime) {
         expires  = '; max-age=' + expireTime;
     }
-    if (dbhTool.isHttps()) {
-        document.cookie = name + '=' + value + expires + '; path=/; secure=true;SameSite=' + sameSite + ';'
-    } else {
+    // if (dbhTool.isHttps()) {
+        // document.cookie = name + '=' + value + expires + '; path=/; secure=true;SameSite=' + sameSite + ';'
+    // } else {
         document.cookie = name + '=' + value + expires + '; path=/; SameSite=' + sameSite + ';'
-    }
+    // }
 };
 // 获取cookie
 const getCookie = (name) => {
